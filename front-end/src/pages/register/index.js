@@ -10,18 +10,20 @@ export default class Register extends Component {
 
     render() {
         return (
-            <div className="login-page">
+            <div className="register-page">
 
-                <div className="login-box">
+                <div className="register-box">
                     
                     <div className="title-box">
                         <h1 className="first-title">Calendar</h1>
                         <h1 className="second-title">App</h1>
                     </div>
+                    
+                    <h2 className="title-register">Register</h2>
 
-                    <div className="email-box">
-                        <label>Email</label>
-                        <input type="email" name="email" id="email"></input>
+                    <div className="name-box">
+                        <label>Name</label>
+                        <input type="name" name="name" id="name"></input>
                     </div>
 
                     <div className="password-box">
@@ -30,8 +32,8 @@ export default class Register extends Component {
                     </div>
 
                     <div className="buttons-box">
-                        <button>Sign in</button>
-                        <button>Create account</button>
+                        <button>Confirm</button>
+                        <button>Cancel</button>
                     </div>
                 </div>
 
