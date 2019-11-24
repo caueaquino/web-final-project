@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import './styles.css';
 
-export default class Login extends Component {
+export default class Register extends Component {
     static propTypes = {
         prop: PropTypes
     }
@@ -19,11 +19,9 @@ export default class Login extends Component {
                         <h1 className="second-title">App</h1>
                     </div>
 
-                    <h2 className="title-login">Login</h2>
-
-                    <div className="name-box">
-                        <label>Name</label>
-                        <input type="name" name="name" id="name"></input>
+                    <div className="email-box">
+                        <label>Email</label>
+                        <input type="email" name="email" id="email"></input>
                     </div>
 
                     <div className="password-box">

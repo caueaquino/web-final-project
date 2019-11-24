@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
 
-var indexRouter = require('./routes/index');
+var calendarRouter = require('./routes/calendar');
 var usersRouter = require('./routes/users');
 
 var app = express();
@@ -21,10 +21,6 @@ mongoose
       console.log('Unable to connect to the mongodb instance. Error: ', reason);
     });
 
-
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -35,7 +31,7 @@ require('./config/passport');
 app.use(passport.initialize());
 app.use(session({secret: 'SECRET', cookie: {maxAge: 60000}, resave: false, saveUninitialized: false}));
 
-app.use('/', indexRouter);
+app.use('/calendar', calendarRouter);
 app.use('/users', usersRouter);
 
 app.use(function(req, res, next) {

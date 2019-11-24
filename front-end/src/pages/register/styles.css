@@ -1,4 +1,4 @@
-.login-page {
+.register-page {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -7,7 +7,7 @@
     background-color: rgb(139, 118, 160);
 }
 
-.login-box {
+.register-box {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,7 +39,7 @@
     color: rgb(0, 0, 58);
 }
 
-.title-login {
+.title-register {
     font-size: 2em;
     color: rgb(140, 140, 140);
     margin-top: 0;
