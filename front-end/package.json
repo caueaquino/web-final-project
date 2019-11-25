@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "ajax": "0.0.4",
+    "fetch": "^1.1.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-navigation": "^4.0.10",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0"
   },

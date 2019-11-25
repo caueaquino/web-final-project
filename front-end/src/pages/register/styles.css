@@ -90,7 +90,12 @@ input:focus {
     outline-style: none;
 }
 
+Link {
+    width: 100%;
+}
+
 button {
+    width: 100%;
     background-color: rgb(235, 218, 252);;
     padding: 8px;
     font-size: 1.2em;

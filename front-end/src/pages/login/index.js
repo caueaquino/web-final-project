@@ -1,11 +1,16 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 import './styles.css';
 
 export default class Login extends Component {
     static propTypes = {
         prop: PropTypes
+    }
+
+    login() {
+
     }
 
     render() {
@@ -32,8 +37,8 @@ export default class Login extends Component {
                     </div>
 
                     <div className="buttons-box">
-                        <button>Sign in</button>
-                        <button>Create account</button>
+                        <button onClick={this.login}>Sign in</button>
+                        <Link to="./register"><button>Create account</button></Link>
                     </div>
                 </div>
 

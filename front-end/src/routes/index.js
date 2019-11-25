@@ -12,7 +12,7 @@ export default class Router extends Component {
                 <Switch>
                     <Route path="/" exact={true} component={Login} />
                     <Route path="/register" exact={true} component={Register} />
-                    <Route path="/calendar" exact={true}exact={true} component={Calendar} />
+                    <Route path="/calendar" exact={true} exact={true} component={Calendar} />
                 </Switch>
             </BrowserRouter>
         )

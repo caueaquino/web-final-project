@@ -12,7 +12,7 @@ class CalendarController {
     }
     async store(req, res) {
         const calendars = await Calendar.create(req.body);
-        return res.redirect('/calendar');
+        return res.json(true);
     }
 }
 

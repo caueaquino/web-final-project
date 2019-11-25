@@ -4,14 +4,17 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const passport = require('passport');
 const session = require('express-session');
 
-var calendarRouter = require('./routes/calendar');
+var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+app.use(cors());
 
 mongoose.createConnection('mongodb://localhost:27017');
 
@@ -20,6 +23,10 @@ mongoose
     .catch((reason) => {
       console.log('Unable to connect to the mongodb instance. Error: ', reason);
     });
+
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -31,7 +38,7 @@ require('./config/passport');
 app.use(passport.initialize());
 app.use(session({secret: 'SECRET', cookie: {maxAge: 60000}, resave: false, saveUninitialized: false}));
 
-app.use('/calendar', calendarRouter);
+app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 app.use(function(req, res, next) {
