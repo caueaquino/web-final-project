@@ -1,0 +1,119 @@
+.calendar-page {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgb(139, 118, 160);
+}
+
+.title-main {
+    margin-top: 36px;
+    font-size: 3em;
+}
+
+.top-box {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 40%;
+    border-radius: 16px;
+    background-color: rgb(196, 189, 202);
+    padding: 36px;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.493);
+    flex-direction: column;
+}
+
+.events-box {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 40%;
+    flex-direction: column;
+    border-radius: 16px;
+    background-color: rgb(196, 189, 202);
+    padding: 36px;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.493);
+}
+
+.main-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    background-color: rgb(105, 54, 126);
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.377);
+    width: 100%;
+    margin-top: 16px;
+}
+
+.first-box {
+    display: flex;
+    min-width: 30%;
+    padding-right: 16px;
+    border-right: 5px solid black;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 80px;
+}
+
+.second-box {
+    display: flex;
+    border-left: 5px solid white;
+    min-width: 70%;
+    padding-left: 8px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 80px;
+}
+
+span {
+    font-weight: 600;
+    font-size: 1.6em;
+    color:rgb(219, 219, 219);
+}
+
+.form-span {
+    font-size: 1.4em;
+    color: black;
+    font-weight: 600;
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.create-button {
+    width: 250px;
+    margin-top: 16px;
+    background-color: rgb(105, 54, 126);
+    margin: 8px;
+}
+
+.button-text {
+    color:rgb(219, 219, 219);
+    font-size: 1em;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-box  {
+    padding-top: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}

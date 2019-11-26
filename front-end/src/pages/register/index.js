@@ -9,20 +9,20 @@ export default class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'carol',
-      password: 'aoba'
+      name: '',
+      password: ''
     }
   }
 
-
-  createAccount = async (e) => {
-    e.preventDefault();
+  createAccount = () => {
     const {name, password} = this.state;
     
-    if(!name || !password)
-      alert('Fill the fields to complete register');
-
+    if(!name || !password) {
+      alert('Fill the fields to complete register.');
+      return;
+    }
     userService.registerUser(name, password);
+    alert('User created sucessfully.');
   }
 
   handleChange = (e) => {
@@ -53,8 +53,8 @@ export default class Register extends Component {
                   </div>
 
                   <div className="buttons-box">
-                      <button onClick={this.createAccount}>Confirm</button>
-                      <Link to="./"><button>Cancel</button></Link>
+                    <Link to="./"><button onClick={()=> this.createAccount()}>Confirm</button></Link>
+                    <Link to="./"><button>Cancel</button></Link>
                   </div>
               </div>
 

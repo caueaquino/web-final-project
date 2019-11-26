@@ -73,8 +73,8 @@ exports.register = (req, res) => {
   user.setPassword(req.body.password);
   user.save((err) => {
     if (err) {
-      res.json(false);
+      res.send(false);
     }
-    res.json(true);
+    res.send(true);
   });
 };

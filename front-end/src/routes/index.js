@@ -3,7 +3,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 import Login from '../pages/login';
 import Register from '../pages/register';
-import Calendar from '../pages/calendar';
+import Agenda from '../pages/calendars';
 
 export default class Router extends Component {
     render() {
@@ -12,7 +12,7 @@ export default class Router extends Component {
                 <Switch>
                     <Route path="/" exact={true} component={Login} />
                     <Route path="/register" exact={true} component={Register} />
-                    <Route path="/calendar" exact={true} exact={true} component={Calendar} />
+                    <Route path="/calendar" exact={true} exact={true} component={Agenda} />
                 </Switch>
             </BrowserRouter>
         )

@@ -1,16 +1,31 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import * as userService from '../../services/user-service';
 
 import './styles.css';
 
 export default class Login extends Component {
-    static propTypes = {
-        prop: PropTypes
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            password: '',
+            rote: './calendars'
+        }
     }
 
-    login() {
+    login = () => {
+        const {name, password} = this.state;
 
+        if(!name || !password) {
+            alert('Fill the fields to complete login.');
+            return;
+        }
+        userService.login(name, password);
+    }
+
+    handleChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
     }
 
     render() {
@@ -27,17 +42,17 @@ export default class Login extends Component {
                     <h2 className="title-login">Login</h2>
 
                     <div className="name-box">
-                        <label>Name</label>
-                        <input type="name" name="name" id="name"></input>
+                      <label>Name</label>
+                      <input value={this.state.name} onChange={this.handleChange} type="text" name="name" />
                     </div>
 
                     <div className="password-box">
                         <label>Password</label>
-                        <input type="password" name="password" id="password"></input>
+                        <input value={this.state.password} onChange={this.handleChange} type="password" name="password" ></input>
                     </div>
 
                     <div className="buttons-box">
-                        <button onClick={this.login}>Sign in</button>
+                        <Link to='./calendar'><button onClick={()=>this.login()}>Sign in</button></Link>
                         <Link to="./register"><button>Create account</button></Link>
                     </div>
                 </div>
