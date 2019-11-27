@@ -1,15 +1,20 @@
-import ajax from 'ajax';
+import axios from 'axios';
 
 const url = 'http://localhost:3001/calendars/';
 
 export const getEvents = (id) => {
-    return ajax.get(url + id);
+    return axios.get(url + id);
 }
 
 export const listEvents = () => {
-    return ajax.get(url);
+    
+    return axios.get(url).then(rs => {
+        if(rs.status = 200)
+            return rs.data;
+        return new [];
+    });
 }
 
 export const createEvent = (name, day, hour) => {
-    ajax.post(url, {name, day, hour});
+    axios.post(url, {name, day, hour});
 }

@@ -14,19 +14,18 @@ export default class Calendar extends Component {
       name: '',
       day: '1',
       hour: '1:00',
-      calendar: [1,2,3,4,5,6],
-      test: any
+      calendar: []
     }
   }
 
-  componentWillMount() {
-    console.log(calendarService.listEvents());
-    this.setState({ test:calendarService.listEvents() });
+  async componentWillMount() {
+    this.setState({ calendar: await calendarService.listEvents() });
   }
 
-  createEvent() {
+  async createEvent() {
     const {name, day, hour} = this.state;
     calendarService.createEvent(name, day, hour);
+    this.setState({ calendar: await calendarService.listEvents() });
   }
 
   logout() {
@@ -38,80 +37,34 @@ export default class Calendar extends Component {
   }
 
   render() {
+  
     return (
         <div className="calendar-page">
-          
           <h1 className="title-main">Calendar</h1>
-
           <div className="top-box">
             <h2>Create event</h2>
 
             <div className="input-box">
 
-              <label className="form-span" for="input1">Name</label>
+              <label className="form-span">Name</label>
               <input type="text" placeholder="Event name" name="name" value={this.state.name} onChange={this.handleChange}/>
 
-              <label className="form-span" for="select1">Day</label>
+              <label className="form-span">Day</label>
               <select className="form-control" value={this.state.day} name="day" onChange={this.handleChange}>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12">12</option>
-                  <option value="13">13</option>
-                  <option value="14">14</option>
-                  <option value="15">15</option>
-                  <option value="16">16</option>
-                  <option value="17">17</option>
-                  <option value="18">18</option>
-                  <option value="19">19</option>
-                  <option value="20">20</option>
-                  <option value="21">21</option>
-                  <option value="22">22</option>
-                  <option value="23">23</option>
-                  <option value="24">24</option>
-                  <option value="25">25</option>
-                  <option value="26">26</option>
-                  <option value="27">27</option>
                   <option value="28">28</option>
                   <option value="29">29</option>
                   <option value="30">30</option>
                   <option value="31">31</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
               </select>
 
-              <label className="form-span" for="select2">Hour</label>
+              <label className="form-span">Hour</label>
               <select className="form-control" value={this.state.hour} name="hour" onChange={this.handleChange}>
                   <option value="1:00">1:00</option>
                   <option value="2:00">2:00</option>
                   <option value="3:00">3:00</option>
-                  <option value="4:00">4:00</option>
-                  <option value="5:00">5:00</option>
-                  <option value="6:00">6:00</option>
-                  <option value="7:00">7:00</option>
-                  <option value="8:00">8:00</option>
-                  <option value="9:00">9:00</option>
-                  <option value="10:00">10:00</option>
-                  <option value="11:00">11:00</option>
-                  <option value="12:00">12:00</option>
-                  <option value="13:00">13:00</option>
-                  <option value="14:00">14:00</option>
-                  <option value="15:00">15:00</option>
-                  <option value="16:00">16:00</option>
-                  <option value="17:00">17:00</option>
-                  <option value="18:00">18:00</option>
-                  <option value="19:00">19:00</option>
-                  <option value="20:00">20:00</option>
-                  <option value="21:00">21:00</option>
-                  <option value="22:00">22:00</option>
-                  <option value="23:00">23:00</option>
-                  <option value="24:00">24:00</option>
               </select>
               
             </div>
@@ -130,23 +83,191 @@ export default class Calendar extends Component {
 
           </div>
 
-          <div className="events-box">
             <h2>Events list</h2>
-         {this.state.calendar.map(() => {
-            return (<div className="main-box">
-                      <div className="first-box">
-                        <span>Day: 31</span>
-                        <span>Hour: 12:00</span>
-                      </div>
 
-                      <div className="second-box">
-                        <span>Name: Event to pass in the test.</span>
-                      </div>
-                    </div>);
-              }
-            )
-          }
-          </div>
+            <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                        <span className="day">28</span>
+                        <span className="long">Monday</span>
+                        <span className="short">Mon</span>
+                    </th>
+                    <th>
+                        <span className="day active">29</span>
+                        <span className="long">Tuesday</span>
+                        <span className="short">Tue</span>
+                    </th>
+                    <th>
+                        <span className="day">30</span>
+                        <span className="long">Wendsday</span>
+                        <span className="short">We</span>
+                    </th>
+                    <th>
+                        <span className="day">31</span>
+                        <span className="long">Thursday</span>
+                        <span className="short">Thur</span>
+                    </th>
+                    <th>
+                        <span className="day">1</span>
+                        <span className="long">Friday</span>
+                        <span className="short">Fri</span>
+                    </th>
+                    <th>
+                        <span className="day">2</span>
+                        <span className="long">Saturday</span>
+                        <span className="short">Sat</span>
+                    </th>
+                    <th>
+                        <span className="day">3</span>
+                        <span className="long">Sunday</span>
+                        <span className="short">Sun</span>
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                <td className="hour"><span>1:00</span></td>
+                    <td>{this.state.calendar.map(rs => {
+                      if(rs.hour == '1:00' && rs.day == 28) {
+                        return <li>{rs.name}</li>}
+                      }
+                      )}
+                    </td>
+                    <td>{this.state.calendar.map(rs => {
+                      if(rs.hour == '1:00' && rs.day == 29) {
+                        return <li>{rs.name}</li>}
+                      }
+                      )}
+                    </td>
+                    <td>{this.state.calendar.map(rs => {
+                      if(rs.hour == '1:00' && rs.day == 30) {
+                        return <li>{rs.name}</li>}
+                      }
+                      )}
+                    </td>
+                    <td>{this.state.calendar.map(rs => {
+                      if(rs.hour == '1:00' && rs.day == 31) {
+                        return <li>{rs.name}</li>}
+                      }
+                      )}
+                    </td>
+                    <td>{this.state.calendar.map(rs => {
+                      if(rs.hour == '1:00' && rs.day == 1) {
+                        return <li>{rs.name}</li>}
+                      }
+                      )}
+                    </td>
+                    <td>{this.state.calendar.map(rs => {
+                      if(rs.hour == '1:00' && rs.day == 2) {
+                        return <li>{rs.name}</li>}
+                      }
+                      )}
+                    </td>
+                    <td>{this.state.calendar.map(rs => {
+                      if(rs.hour == '1:00' && rs.day == 3) {
+                        return <li>{rs.name}</li>}
+                      }
+                      )}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td className="hour"><span>2:00</span></td>
+                    <td>{this.state.calendar.map(rs => {
+                      if(rs.hour == '2:00' && rs.day == 28) {
+                        return <li>{rs.name}</li>}
+                      }
+                      )}
+                    </td>
+                    <td>{this.state.calendar.map(rs => {
+                      if(rs.hour == '2:00' && rs.day == 29) {
+                        return <li>{rs.name}</li>}
+                      }
+                      )}
+                    </td>
+                    <td>{this.state.calendar.map(rs => {
+                      if(rs.hour == '2:00' && rs.day == 30) {
+                        return <li>{rs.name}</li>}
+                      }
+                      )}
+                    </td>
+                    <td>{this.state.calendar.map(rs => {
+                      if(rs.hour == '2:00' && rs.day == 31) {
+                        return <li>{rs.name}</li>}
+                      }
+                      )}
+                    </td>
+                    <td>{this.state.calendar.map(rs => {
+                      if(rs.hour == '2:00' && rs.day == 1) {
+                        return <li>{rs.name}</li>}
+                      }
+                      )}
+                    </td>
+                    <td>{this.state.calendar.map(rs => {
+                      if(rs.hour == '2:00' && rs.day == 2) {
+                        return <li>{rs.name}</li>}
+                      }
+                      )}
+                    </td>
+                    <td>{this.state.calendar.map(rs => {
+                      if(rs.hour == '2:00' && rs.day == 3) {
+                        return <li>{rs.name}</li>}
+                      }
+                      )}
+                    </td>
+                </tr>
+
+                <tr>
+                <td className="hour"><span>3:00</span></td>
+                    <td>{this.state.calendar.map(rs => {
+                      if(rs.hour == '3:00' && rs.day == 28) {
+                        return <li>{rs.name}</li>}
+                      }
+                      )}
+                    </td>
+                    <td>{this.state.calendar.map(rs => {
+                      if(rs.hour == '3:00' && rs.day == 29) {
+                        return <li>{rs.name}</li>}
+                      }
+                      )}
+                    </td>
+                    <td>{this.state.calendar.map(rs => {
+                      if(rs.hour == '3:00' && rs.day == 30) {
+                        return <li>{rs.name}</li>}
+                      }
+                      )}
+                    </td>
+                    <td>{this.state.calendar.map(rs => {
+                      if(rs.hour == '3:00' && rs.day == 31) {
+                        return <li>{rs.name}</li>}
+                      }
+                      )}
+                    </td>
+                    <td>{this.state.calendar.map(rs => {
+                      if(rs.hour == '3:00' && rs.day == 1) {
+                        return <li>{rs.name}</li>}
+                      }
+                      )}
+                    </td>
+                    <td>{this.state.calendar.map(rs => {
+                      if(rs.hour == '3:00' && rs.day == 2) {
+                        return <li>{rs.name}</li>}
+                      }
+                      )}
+                    </td>
+                    <td>{this.state.calendar.map(rs => {
+                      if(rs.hour == '3:00' && rs.day == 3) {
+                        return <li>{rs.name}</li>}
+                      }
+                      )}
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+
         </div>
     );
   }    
