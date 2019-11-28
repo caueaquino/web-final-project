@@ -1,10 +1,10 @@
 const chai = require('chai');
-const http = require('chai-http'); 
-const subSet = require('chai-subset'); 
+const http = require('chai-http');
+const subSet = require('chai-subset');
 
 const app = require('../app');
 
-const UserController = require('../controller/UserController'); 
+const UserController = require('../controller/UserController');
 const CalendarController = require('../controller/CalendarController');
 
 chai.use(http);
@@ -28,7 +28,7 @@ const calendarSchema = {
     creationDate: creation => creation
 };
 
-describe('Integration tests user and calendars', async() => {
+describe('Integration tests user and calendars', async () => {
 
     it('/users - POST', () => {
         chai.request(app)
@@ -40,11 +40,11 @@ describe('Integration tests user and calendars', async() => {
             .end((err, res) => {
                 chai.expect(err).to.be.null;
                 chai.expect(res).to.have.status(201);
-                chai.expect(res.body).to.containSubset(userSchema); 
+                chai.expect(res.body).to.containSubset(userSchema);
             });
     });
 
-    
+
     it('/calendars - POST', () => {
         chai.request(app)
             .post('/calendars')
@@ -56,7 +56,7 @@ describe('Integration tests user and calendars', async() => {
             .end((err, res) => {
                 chai.expect(err).to.be.null;
                 chai.expect(res).to.have.status(201);
-                chai.expect(res.body).to.containSubset(calendarPostSchema); 
+                chai.expect(res.body).to.containSubset(calendarPostSchema);
             });
     });
 
@@ -65,7 +65,7 @@ describe('Integration tests user and calendars', async() => {
             .get('/calendar')
             .end((err, res) => {
                 chai.expect(err).to.be.null;
-                chai.expect(res).to.have.status(200); 
+                chai.expect(res).to.have.status(200);
                 chai.expect(res.body.length).to.be.equal(4);
                 chai.expect(res.body).to.containSubset([calendarSchema]);
             });
@@ -73,24 +73,47 @@ describe('Integration tests user and calendars', async() => {
 });
 
 
-// describe('Unit tests user and calendars', async() => {
+describe('Unit tests user and calendars', async () => {
 
-    // it('addUser', async() => {
-    //     const user = await UserController.register({name:'testeNode', password: 'teste123'});
-        
-    //     chai.expect(user.name).to.be.equals('testeNode');
-    //     chai.expect(user).to.containSubset(userSchema);
-    // });
+    it('addUser', () => {
+        const user = {
+            name: 'testeNode',
+            password: 'teste123'
+        }
+        UserController.register(user);
 
-    // it('getCalendars', async() => {
-    //     var calendar;
-    //     CalendarController.store({name: 'test1', day: '1', hour: '1'});
-    //     CalendarController.store({name: 'test2', day: '2', hour: '2'});
-    //     CalendarController.store({name: 'test3', day: '3', hour: '3'}).then(async() => {
-    //         calendar = await CalendarController.index().data;
-    //     });
-        
-    //     chai.expect(calendar.length).to.be.equals(0);
-    //     chai.expect(calendar).to.containSubset(calendarSchema);
-    // });
+        chai.expect(user.name).to.be.equals('testeNode');
+    });
+
+    it('addCalendar', () => {
+        const postCalendar = {
+            name: 'eventTest',
+            day: '1',
+            hour: '1:00'
+        };
+        CalendarController.store(postCalendar);
+
+        chai.expect(postCalendar.name).to.be.equals('eventTest');
+    });
+
+    it('getCalendars', async () => {
+        const calendars = [{
+            name: 'test1',
+            day: '1',
+            hour: '1'
+        }, {
+            name: 'test2',
+            day: '2',
+            hour: '2'
+        }];
+
+        CalendarController.store(calendars[0]);
+        CalendarController.store(calendars[1]);
+
+        CalendarController.index().data;
+
+        chai.expect(calendars[0].name).to.be.equals('test1');
+        chai.expect(calendars[1].name).to.be.equals('test2');
+        chai.expect(calendars.length).to.be.equals(2);
+    });
 });

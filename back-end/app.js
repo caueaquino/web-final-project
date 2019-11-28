@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const passport = require('passport');
 const session = require('express-session');
@@ -15,6 +16,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 app.use(cors());
+app.use(bodyParser.json());
 
 mongoose.createConnection('mongodb://localhost:27017');
 
