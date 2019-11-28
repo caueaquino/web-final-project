@@ -73,16 +73,16 @@ describe('Integration tests user and calendars', async () => {
 });
 
 
-describe('Unit tests user and calendars', async () => {
+describe('Unit tests user and calendars', () => {
 
-    it('addUser', () => {
-        const user = {
-            name: 'testeNode',
-            password: 'teste123'
-        }
-        UserController.register(user);
+    it('addCalendar', () => {
+        const postUser = {
+            name: 'nameTest',
+            password: '123'
+        };
+        // UserController.register({postUser});
 
-        chai.expect(user.name).to.be.equals('testeNode');
+        chai.expect(postUser.name).to.be.equals('nameTest');
     });
 
     it('addCalendar', () => {
