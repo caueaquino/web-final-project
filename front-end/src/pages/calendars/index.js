@@ -4,7 +4,6 @@ import * as userService from '../../services/user-service';
 import * as calendarService from '../../services/calendar-service';
 
 import './styles.css';
-import { any } from 'prop-types';
 
 
 export default class Calendar extends Component {
@@ -12,7 +11,7 @@ export default class Calendar extends Component {
     super(props);
     this.state = {
       name: '',
-      day: '1',
+      day: '28',
       hour: '1:00',
       calendar: []
     }
@@ -24,8 +23,9 @@ export default class Calendar extends Component {
 
   async createEvent() {
     const {name, day, hour} = this.state;
-    calendarService.createEvent(name, day, hour);
-    this.setState({ calendar: await calendarService.listEvents() });
+    calendarService.createEvent(name, day, hour).then(async() => {
+      this.setState({ calendar: await calendarService.listEvents() });
+    });
   }
 
   logout() {
