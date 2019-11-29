@@ -23,9 +23,9 @@ export default class Calendar extends Component {
 
   async createEvent() {
     const {name, day, hour} = this.state;
-    calendarService.createEvent(name, day, hour).then(async() => {
-      this.setState({ calendar: await calendarService.listEvents() });
-    });
+    calendarService.createEvent(name, day, hour);
+    this.setState({ calendar: await calendarService.listEvents() });
+    document.location.reload();
   }
 
   logout() {
