@@ -36,8 +36,60 @@ export default class Calendar extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  render() {
+  renderDays = () => {
+    const days = [];
+    for(let i = 1; i < 8; i++) {
+      days.push(<option value={i+''}>{i}</option>);
+    }
+    return days;
+  }
+
+  renderHours = () => {
+    const hours = [];
+    for (let i = 1; i < 25; i++) {
+      hours.push( <option value={i + ':00'}>{i}:00</option> )
+    }
+    return hours;
+  }
+
+  renderHeaderTable() {
+    const header = [];
+    const week = ['Monday', 'Tuesday', 'Wendsday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const shortWeek = ['Mon', 'Tue', 'We', 'Thur', 'Fri', 'Sat', 'sun'];
+
+    for (let i = 1; i < 8; i++) {
+      header.push(<th>
+                    <span className="day">{i}</span>
+                    <span className="long">{week[i-1]}</span>
+                    <span className="short">{shortWeek[i-1]}</span>
+                  </th>)
+    }
+    return header;
+  }
+
+  renderLineTable() {
+    const table = [];
+    
+    for(let j = 1; j < 25; j++) {
+      let rowTable = [];
+      rowTable.push(<td className="hour"><span>{j}:00</span></td>);
+        
+      for(let i = 1; i < 8; i++) {
+          rowTable.push(<td>{this.state.calendar.map(rs => {
+                          if(rs.hour === {j}+':00' && rs.day === {i}) {
+                            return <li>{rs.name}</li>}
+                          }
+                          )}
+                        </td>);
+      }
+      table.push(<tr>{rowTable}</tr>);
+    }
+    return table;
+  }
   
+
+  render() {
+
     return (
         <div className="calendar-page">
           <h1 className="title-main">Calendar</h1>
@@ -51,20 +103,12 @@ export default class Calendar extends Component {
 
               <label className="form-span">Day</label>
               <select className="form-control" value={this.state.day} name="day" onChange={this.handleChange}>
-                  <option value="28">28</option>
-                  <option value="29">29</option>
-                  <option value="30">30</option>
-                  <option value="31">31</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
+                  {this.renderDays()}
               </select>
 
               <label className="form-span">Hour</label>
               <select className="form-control" value={this.state.hour} name="hour" onChange={this.handleChange}>
-                  <option value="1:00">1:00</option>
-                  <option value="2:00">2:00</option>
-                  <option value="3:00">3:00</option>
+                {this.renderHours()}
               </select>
               
             </div>
@@ -89,184 +133,14 @@ export default class Calendar extends Component {
             <thead>
                 <tr>
                     <th></th>
-                    <th>
-                        <span className="day">28</span>
-                        <span className="long">Monday</span>
-                        <span className="short">Mon</span>
-                    </th>
-                    <th>
-                        <span className="day active">29</span>
-                        <span className="long">Tuesday</span>
-                        <span className="short">Tue</span>
-                    </th>
-                    <th>
-                        <span className="day">30</span>
-                        <span className="long">Wendsday</span>
-                        <span className="short">We</span>
-                    </th>
-                    <th>
-                        <span className="day">31</span>
-                        <span className="long">Thursday</span>
-                        <span className="short">Thur</span>
-                    </th>
-                    <th>
-                        <span className="day">1</span>
-                        <span className="long">Friday</span>
-                        <span className="short">Fri</span>
-                    </th>
-                    <th>
-                        <span className="day">2</span>
-                        <span className="long">Saturday</span>
-                        <span className="short">Sat</span>
-                    </th>
-                    <th>
-                        <span className="day">3</span>
-                        <span className="long">Sunday</span>
-                        <span className="short">Sun</span>
-                    </th>
+                    {this.renderHeaderTable()}
                 </tr>
             </thead>
 
             <tbody>
-                <tr>
-                <td className="hour"><span>1:00</span></td>
-                    <td>{this.state.calendar.map(rs => {
-                      if(rs.hour == '1:00' && rs.day == 28) {
-                        return <li>{rs.name}</li>}
-                      }
-                      )}
-                    </td>
-                    <td>{this.state.calendar.map(rs => {
-                      if(rs.hour == '1:00' && rs.day == 29) {
-                        return <li>{rs.name}</li>}
-                      }
-                      )}
-                    </td>
-                    <td>{this.state.calendar.map(rs => {
-                      if(rs.hour == '1:00' && rs.day == 30) {
-                        return <li>{rs.name}</li>}
-                      }
-                      )}
-                    </td>
-                    <td>{this.state.calendar.map(rs => {
-                      if(rs.hour == '1:00' && rs.day == 31) {
-                        return <li>{rs.name}</li>}
-                      }
-                      )}
-                    </td>
-                    <td>{this.state.calendar.map(rs => {
-                      if(rs.hour == '1:00' && rs.day == 1) {
-                        return <li>{rs.name}</li>}
-                      }
-                      )}
-                    </td>
-                    <td>{this.state.calendar.map(rs => {
-                      if(rs.hour == '1:00' && rs.day == 2) {
-                        return <li>{rs.name}</li>}
-                      }
-                      )}
-                    </td>
-                    <td>{this.state.calendar.map(rs => {
-                      if(rs.hour == '1:00' && rs.day == 3) {
-                        return <li>{rs.name}</li>}
-                      }
-                      )}
-                    </td>
-                </tr>
-
-                <tr>
-                    <td className="hour"><span>2:00</span></td>
-                    <td>{this.state.calendar.map(rs => {
-                      if(rs.hour == '2:00' && rs.day == 28) {
-                        return <li>{rs.name}</li>}
-                      }
-                      )}
-                    </td>
-                    <td>{this.state.calendar.map(rs => {
-                      if(rs.hour == '2:00' && rs.day == 29) {
-                        return <li>{rs.name}</li>}
-                      }
-                      )}
-                    </td>
-                    <td>{this.state.calendar.map(rs => {
-                      if(rs.hour == '2:00' && rs.day == 30) {
-                        return <li>{rs.name}</li>}
-                      }
-                      )}
-                    </td>
-                    <td>{this.state.calendar.map(rs => {
-                      if(rs.hour == '2:00' && rs.day == 31) {
-                        return <li>{rs.name}</li>}
-                      }
-                      )}
-                    </td>
-                    <td>{this.state.calendar.map(rs => {
-                      if(rs.hour == '2:00' && rs.day == 1) {
-                        return <li>{rs.name}</li>}
-                      }
-                      )}
-                    </td>
-                    <td>{this.state.calendar.map(rs => {
-                      if(rs.hour == '2:00' && rs.day == 2) {
-                        return <li>{rs.name}</li>}
-                      }
-                      )}
-                    </td>
-                    <td>{this.state.calendar.map(rs => {
-                      if(rs.hour == '2:00' && rs.day == 3) {
-                        return <li>{rs.name}</li>}
-                      }
-                      )}
-                    </td>
-                </tr>
-
-                <tr>
-                <td className="hour"><span>3:00</span></td>
-                    <td>{this.state.calendar.map(rs => {
-                      if(rs.hour == '3:00' && rs.day == 28) {
-                        return <li>{rs.name}</li>}
-                      }
-                      )}
-                    </td>
-                    <td>{this.state.calendar.map(rs => {
-                      if(rs.hour == '3:00' && rs.day == 29) {
-                        return <li>{rs.name}</li>}
-                      }
-                      )}
-                    </td>
-                    <td>{this.state.calendar.map(rs => {
-                      if(rs.hour == '3:00' && rs.day == 30) {
-                        return <li>{rs.name}</li>}
-                      }
-                      )}
-                    </td>
-                    <td>{this.state.calendar.map(rs => {
-                      if(rs.hour == '3:00' && rs.day == 31) {
-                        return <li>{rs.name}</li>}
-                      }
-                      )}
-                    </td>
-                    <td>{this.state.calendar.map(rs => {
-                      if(rs.hour == '3:00' && rs.day == 1) {
-                        return <li>{rs.name}</li>}
-                      }
-                      )}
-                    </td>
-                    <td>{this.state.calendar.map(rs => {
-                      if(rs.hour == '3:00' && rs.day == 2) {
-                        return <li>{rs.name}</li>}
-                      }
-                      )}
-                    </td>
-                    <td>{this.state.calendar.map(rs => {
-                      if(rs.hour == '3:00' && rs.day == 3) {
-                        return <li>{rs.name}</li>}
-                      }
-                      )}
-                    </td>
-                </tr>
-              </tbody>
-            </table>
+                {this.renderLineTable()}
+            </tbody>
+          </table>
 
         </div>
     );

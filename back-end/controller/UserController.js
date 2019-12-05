@@ -44,6 +44,11 @@ exports.login = (req, res, next) => {
   })(req, res, next);
 };
 
+exports.index = async(req, res) => {
+  const users = await User.find();
+  return res.json(users);
+}
+
 exports.current = (req, res) => {
   const {payload: {id}} = req;
 
