@@ -11,7 +11,7 @@ export default class Calendar extends Component {
     super(props);
     this.state = {
       name: '',
-      day: '28',
+      day: '1',
       hour: '1:00',
       calendar: []
     }
@@ -76,7 +76,7 @@ export default class Calendar extends Component {
         
       for(let i = 1; i < 8; i++) {
           rowTable.push(<td>{this.state.calendar.map(rs => {
-                          if(rs.hour === {j}+':00' && rs.day === {i}) {
+                          if(rs.hour == j+':00' && rs.day === i+'') {
                             return <li>{rs.name}</li>}
                           }
                           )}
